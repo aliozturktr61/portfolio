@@ -92,7 +92,9 @@ Projeler bölümü herkese açık repoları listeler. API limiti aşılırsa lis
 ## Lisans
 
 Bu proje kişisel portfolyo amaçlıdır. İçerik ve tasarım Ali Öztürk’e aittir.
-<img width="250" height="156" alt="Zight Recording 2026-05-15 at 04 09 35 PM" src="https://github.com/user-attachments/assets/28b4a41f-5272-409a-8ca9-6204e96e27cf" />
+
+<img width="400" height="250" alt="Zight Recording 2026-05-15 at 04 09 35 PM" src="https://github.com/user-attachments/assets/6cac0546-709c-4356-a052-4d9e34abe232" />
+
 
 
 # portfolio

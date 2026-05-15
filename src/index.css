@@ -1,0 +1,401 @@
+/**
+ * Global stiller ve tasarım sistemi.
+ * Renk, tipografi ve spacing değerleri :root altında tanımlanır; bileşen CSS dosyaları bunları kullanır.
+ */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+/* ===== CSS Custom Properties (Design Tokens) ===== */
+:root {
+  /* Colors */
+  --color-bg-primary: #0a0a0f;
+  --color-bg-secondary: #12121a;
+  --color-bg-tertiary: #1a1a2e;
+  --color-bg-card: rgba(26, 26, 46, 0.6);
+  --color-bg-card-hover: rgba(26, 26, 46, 0.9);
+  --color-bg-glass: rgba(255, 255, 255, 0.03);
+
+  --color-accent-primary: #6c63ff;
+  --color-accent-secondary: #00d4ff;
+  --color-accent-tertiary: #ff6b9d;
+  --color-accent-gradient: linear-gradient(135deg, #6c63ff 0%, #00d4ff 50%, #ff6b9d 100%);
+  --color-accent-gradient-hover: linear-gradient(135deg, #7c73ff 0%, #10e4ff 50%, #ff7bad 100%);
+
+  --color-text-primary: #f0f0f5;
+  --color-text-secondary: #a0a0b8;
+  --color-text-muted: #6a6a80;
+  --color-text-accent: #6c63ff;
+
+  --color-border: rgba(255, 255, 255, 0.06);
+  --color-border-hover: rgba(108, 99, 255, 0.3);
+  --color-success: #00e676;
+  --color-error: #ff5252;
+
+  /* Typography */
+  --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Spacing */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+  --space-4xl: 6rem;
+
+  /* Border Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
+  --shadow-glow: 0 0 20px rgba(108, 99, 255, 0.15);
+  --shadow-glow-hover: 0 0 40px rgba(108, 99, 255, 0.25);
+
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-base: 0.3s ease;
+  --transition-slow: 0.5s ease;
+  --transition-spring: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* ===== Global Reset & Base ===== */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-primary);
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color var(--transition-base);
+}
+
+ul, ol {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+}
+
+input, textarea {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+}
+
+/* ===== Scrollbar ===== */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-accent-primary);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent-secondary);
+}
+
+/* ===== Selection ===== */
+::selection {
+  background: rgba(108, 99, 255, 0.3);
+  color: var(--color-text-primary);
+}
+
+/* ===== Keyframe Animations ===== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(108, 99, 255, 0.15); }
+  50% { box-shadow: 0 0 40px rgba(108, 99, 255, 0.3); }
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: var(--color-accent-primary); }
+}
+
+@keyframes orbit {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ===== Utility Classes ===== */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-xl);
+}
+
+.section {
+  padding: var(--space-4xl) 0;
+  position: relative;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: var(--space-md);
+  background: var(--color-accent-gradient);
+  background-size: 200% 200%;
+  animation: gradient-shift 4s ease infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.section-subtitle {
+  color: var(--color-text-secondary);
+  font-size: 1.1rem;
+  margin-bottom: var(--space-3xl);
+  max-width: 600px;
+}
+
+.gradient-text {
+  background: var(--color-accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.glass-card {
+  background: var(--color-bg-card);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-base);
+}
+
+.glass-card:hover {
+  background: var(--color-bg-card-hover);
+  border-color: var(--color-border-hover);
+  box-shadow: var(--shadow-glow);
+  transform: translateY(-4px);
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-md) var(--space-xl);
+  background: var(--color-accent-gradient);
+  background-size: 200% 200%;
+  color: white;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all var(--transition-base);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--color-accent-gradient-hover);
+  background-size: 200% 200%;
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-glow-hover);
+}
+
+.btn-primary:hover::before {
+  opacity: 1;
+}
+
+.btn-primary span {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-md) var(--space-xl);
+  border: 1px solid var(--color-border-hover);
+  color: var(--color-accent-primary);
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all var(--transition-base);
+  background: transparent;
+}
+
+.btn-outline:hover {
+  background: rgba(108, 99, 255, 0.1);
+  border-color: var(--color-accent-primary);
+  transform: translateY(-2px);
+}
+
+/* ===== Background Effects ===== */
+.bg-grid {
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(108, 99, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(108, 99, 255, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.bg-glow {
+  position: fixed;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.08;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.bg-glow-1 {
+  top: -200px;
+  right: -200px;
+  background: var(--color-accent-primary);
+}
+
+.bg-glow-2 {
+  bottom: -200px;
+  left: -200px;
+  background: var(--color-accent-secondary);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 var(--space-md);
+  }
+
+  .section {
+    padding: var(--space-3xl) 0;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 14px;
+  }
+
+  .section-title {
+    font-size: 1.75rem;
+  }
+}

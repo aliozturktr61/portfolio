@@ -1,0 +1,33 @@
+.logo {
+  display: inline-flex;
+  align-items: baseline;
+  font-family: var(--font-mono);
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+  cursor: inherit;
+  user-select: none;
+}
+
+.logo[role='button'] {
+  cursor: pointer;
+}
+
+.logo-bracket {
+  color: var(--color-accent-secondary);
+  font-weight: 500;
+}
+
+.logo-text {
+  background: var(--color-accent-gradient);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 800;
+  padding: 0 0.05em;
+}
+
+.logo:hover .logo-text {
+  animation: gradient-shift 2s ease infinite;
+}
